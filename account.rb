@@ -3,7 +3,7 @@ require 'json'
 class Account
   attr_accessor :name, :currency, :balance, :number
 
-  def initialize(name, currency, balance, description)
+  def initialize(name, currency, balance, number)
     @name = name
     @currency = currency
     @balance = balance

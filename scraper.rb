@@ -17,7 +17,7 @@ class Scraper
     @browser.div(:class => ["box-border", "ng-scope"]).wait_until_present
   end
 
-  def extractAccounts
+  def extractAccountsData
     @accounts = browser.elements(:class => ["box-border", "ng-scope"]).map do |item|
       Account.new(
         item.div(:index => 0).h5.text,
@@ -46,7 +46,7 @@ end
 scraper = Scraper.new
 scraper.openBrowser
 scraper.accessAccountsPage
-scraper.extractAccounts
+scraper.extractAccountsData
 scraper.printAccountsData
 scraper.printAccountsJson
 scraper.closeBrowser
