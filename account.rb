@@ -1,18 +1,33 @@
+require 'json'
+
 class Account
-  attr_accessor :name, :currency, :balance, :description
+  attr_accessor :name, :currency, :balance, :number
 
   def initialize(name, currency, balance, description)
     @name = name
     @currency = currency
     @balance = balance
-    @description = description
+    @number = number
   end
 
-  def to_s()
+  def to_json
+    to_hash.to_json
+  end
+
+  def to_hash
+    {
+      :name => @name,
+      :currency => @currency,
+      :balance => @balance,
+      :number => @number
+    }
+  end
+
+  def to_s
     "**Account**:\n" +
     "-name #{name}\n" +
     "-currency #{currency}\n" +
     "-balance #{balance}\n" +
-    "-description #{description}\n\n"
+    "-number #{number}\n\n"
   end
 end
