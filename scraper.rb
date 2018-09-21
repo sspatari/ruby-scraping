@@ -6,7 +6,7 @@ require_relative 'transaction'
 class Scraper
   attr_accessor :accounts, :browser
 
-  def openBrowser
+  def openBrowser # use firefox browser
     @browser = Watir::Browser.new(:firefox)
   end
 
@@ -24,7 +24,7 @@ class Scraper
       Account.new(
         item.div(:index => 0).h5.text,
         item.div(:index => 1).span.text,
-        item.td.text,
+        item.td.text.to_f.round(2),
         item.div(:index => 0).span.text
       )
     end
@@ -60,7 +60,7 @@ class Scraper
         Transaction.new(
           row.td(:index => 1).span.text,
           row.td(:index => 4).p.text,
-          (row.td(:index => 3).span.text.to_f.round(2) - row.td(:index => 2).span.text.to_f.round(2)).to_s
+          row.td(:index => 3).span.text.to_f.round(2) - row.td(:index => 2).span.text.to_f.round(2)
         )
       end
 
