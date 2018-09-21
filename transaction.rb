@@ -1,10 +1,10 @@
 require 'json'
 
 class Transaction
-  attr_accessor :name, :description, :amount
+  attr_accessor :date, :description, :amount
 
-  def initialize(name, description, amount)
-    @name = name
+  def initialize(date, description, amount)
+    @date = date
     @description = description
     @amount = amount
   end
@@ -15,7 +15,7 @@ class Transaction
 
   def to_hash
     {
-      :name => @name,
+      :date => @date,
       :description => @description,
       :amount => @amount
     }
@@ -23,8 +23,8 @@ class Transaction
 
   def to_s
     "**Transaction**:\n" +
-    "-name #{name}\n" +
+    "-date #{date}\n" +
     "-description #{description}\n" +
-    "-amount #{amount}\n\n"
+    "-amount #{amount}\n"
   end
 end

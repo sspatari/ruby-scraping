@@ -1,13 +1,14 @@
 require 'json'
 
 class Account
-  attr_accessor :name, :currency, :balance, :number
+  attr_accessor :name, :currency, :balance, :number, :transactions
 
   def initialize(name, currency, balance, number)
     @name = name
     @currency = currency
     @balance = balance
     @number = number
+    @transactions = []
   end
 
   def to_json
@@ -19,7 +20,8 @@ class Account
       :name => @name,
       :currency => @currency,
       :balance => @balance,
-      :number => @number
+      :number => @number,
+      :transactions => @transactions.map { |transaction| transaction.to_hash}
     }
   end
 
